@@ -1,17 +1,42 @@
-function preload() {
-  // put preload code here
-}
-
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  // put setup code here
-  const message =
-    "This is a template repository\nfor the course Laboratorio di Computergrafica\nCommunication Design, Politecnico di Milano";
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text(message, width / 2, height / 2);
+  createCanvas(windowWidth, windowHeight);  
+  background(255);  
+
+ 
+  let numBackgroundCircles = 50;  
+  for (let i = 0; i < numBackgroundCircles; i++) {
+    let x = random(width);     
+    let y = random(height);
+    let maxRadius = random(20, 110);  
+    drawConcentricCircles(x, y, maxRadius);
+  }
+
+ 
+  let bigCircleMaxRadius = width / 2;  
+  drawConcentricCircles(width / 2, height / 2, bigCircleMaxRadius);  
+  
+  
+  let numForegroundCircles = 25; 
+  for (let i = 0; i < numForegroundCircles; i++) {
+    let x = random(width);     
+    let y = random(height);
+    let maxRadius = random(20, 110);  
+    drawConcentricCircles(x, y, maxRadius);
+  }
 }
 
-function draw() {
-  // put drawing code here
+function drawConcentricCircles(x, y, maxRadius) {
+  let numCircles = int(random(5, 100));  
+  for (let i = numCircles; i > 0; i--) {
+    let radius = (i / numCircles) * maxRadius;
+
+    
+    let fillColor = color(random(255), random(255), random(255));
+    let borderColor = color(0);  
+
+    stroke(borderColor);         
+    strokeWeight(0.3);           
+    fill(fillColor);            
+    ellipse(x, y, radius * 2, radius * 2);
+  }
 }
